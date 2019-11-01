@@ -8,6 +8,7 @@ package User;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Set;
 import javax.swing.JTextArea;
@@ -87,6 +88,9 @@ public class PersonalChatView extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextArea1.setFocusable(false);
+        jTextArea1.setRequestFocusEnabled(false);
         jScrollPane2.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -176,9 +180,10 @@ public class PersonalChatView extends javax.swing.JFrame {
 
     private void jTextFieldMessageFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMessageFieldActionPerformed
         // TODO add your handling code here:
+        Date time = new Date();
         String message = jTextFieldMessageField.getText().trim();
         jTextFieldMessageField.setText("");
-        jTextArea1.append(sender + ": " + message + "\n");
+        jTextArea1.append(sender + "("+time+")" + " : " + message + "\n");
         socketClient.sendMessage(sender, rcver, message);
         
     }//GEN-LAST:event_jTextFieldMessageFieldActionPerformed

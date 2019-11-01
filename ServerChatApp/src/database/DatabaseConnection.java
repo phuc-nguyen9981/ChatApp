@@ -14,9 +14,9 @@ import java.sql.SQLException;
  * @author png99
  */
 public class DatabaseConnection {
-    public static final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=ChatAppDB";
-    public static final String DB_USERNAME = "sald";
-    public static final String DB_PASSWORD = "admiral";
+    public static final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=User";
+    public static final String DB_USERNAME = "sa";
+    public static final String DB_PASSWORD = "1234";
     static Connection conn = null;
     
     
@@ -27,7 +27,7 @@ public class DatabaseConnection {
         
         try{
 //            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String url="jdbc:sqlserver://localhost:1433;databaseName=ChatAppDB";
+            String url="jdbc:sqlserver://localhost:1433;databaseName=User";
             String user="sa";
             String password = "1234";
                 try{

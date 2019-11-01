@@ -5,21 +5,31 @@
  */
 package User;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.filechooser.FileSystemView;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author png99
  */
-public class SharedFileView extends javax.swing.JFrame {
-
+public class SharedFileView extends javax.swing.JFrame{
+    
     /**
      * Creates new form SharedFileView
      */
     public SharedFileView() {
         initComponents();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -47,18 +57,15 @@ public class SharedFileView extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "File Name", "Type", "Size"
+                "File Name", "Size"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -88,16 +95,28 @@ public class SharedFileView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFileChooser view = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        int returnValue = view.showOpenDialog(null);
-		// int returnValue = jfc.showSaveDialog(null);
-
+        JFileChooser js = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        js.setFileFilter(new ChooseFile(".txt", "Text File"));
+        js.setFileFilter(new ChooseFile(".doc", "Word File"));
+        js.setFileFilter(new ChooseFile(".jpg", "Image File"));
+	// int returnValue = jfc.showSaveDialog(null);
+        int returnValue = js.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = view.getSelectedFile();
-	System.out.println(selectedFile.getAbsolutePath());
+            File selectedFile = js.getSelectedFile();   
+            DefaultTableModel dm = (DefaultTableModel)jTable1.getModel();
+            dm.setColumnIdentifiers(new Object[]{
+                "File Name","Size"
+            });
+            dm.addRow(new Object[]{
+                selectedFile.getName(),getFileSizeMegaBytes(selectedFile)
+            });
+            System.out.println(selectedFile.getAbsolutePath());
 	}
+        
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    private static String getFileSizeMegaBytes(File file){
+        return (float) file.length()/(1024*1024) + " mb";
+    }
     /**
      * @param args the command line arguments
      */

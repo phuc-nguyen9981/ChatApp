@@ -14,6 +14,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -133,8 +134,9 @@ public class ClientSocket extends Socket{
                 chatView.addChattingUser(sender, chatView);
                 chatView.setVisible(true);
             }
+            Date time = new Date();
             JTextArea ta = chatView.getTextArea();
-            ta.append(sender + ": " + message + "\n");
+            ta.append(sender + "(" + time +")"+ " : " + message + "\n");
             
         } catch (IOException ex) {
             Logger.getLogger(ClientSocket.class.getName()).log(Level.SEVERE, null, ex);

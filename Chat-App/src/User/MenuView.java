@@ -292,7 +292,7 @@ public class MenuView extends javax.swing.JFrame {
 
     jTabbedPane1.addTab("Kết bạn", jPanelAddFriends);
 
-    jLabel2.setText("Avatar");
+    jLabel2.setText("Xin chào:");
 
     jMenu1.setText("Lựa chọn");
     jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -334,7 +334,7 @@ public class MenuView extends javax.swing.JFrame {
         .addGroup(layout.createSequentialGroup()
             .addContainerGap()
             .addComponent(jLabel2)
-            .addGap(109, 109, 109)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabelUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
@@ -344,7 +344,7 @@ public class MenuView extends javax.swing.JFrame {
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabelUsername)
-                .addComponent(jLabel2))
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(59, 59, 59)
             .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE))
     );

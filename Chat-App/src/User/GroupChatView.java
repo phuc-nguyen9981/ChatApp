@@ -6,6 +6,7 @@
 package User;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import socket.GroupChatSocket;
@@ -49,6 +50,7 @@ public class GroupChatView extends javax.swing.JFrame {
         new Thread(){
             @Override
             public void run() {
+                Date time = new Date();
                 while(true){
                     String message = groupSocket.getMessage();
                     jTextAreaScreen.append(message + "\n");
@@ -84,6 +86,7 @@ public class GroupChatView extends javax.swing.JFrame {
 
         jTextAreaScreen.setColumns(20);
         jTextAreaScreen.setRows(5);
+        jTextAreaScreen.setFocusable(false);
         jScrollPane1.setViewportView(jTextAreaScreen);
 
         jTextFieldMessageField.addActionListener(new java.awt.event.ActionListener() {
@@ -122,9 +125,9 @@ public class GroupChatView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldMessageField, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSend, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonSend, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldMessageField, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -136,7 +139,8 @@ public class GroupChatView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSendKeyPressed
 
     private void jTextFieldMessageFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMessageFieldActionPerformed
-        String message = username + ": " + jTextFieldMessageField.getText().trim();
+        Date time = new Date();
+        String message = username +"("+ time+") " + ": " + jTextFieldMessageField.getText().trim();
         jTextFieldMessageField.setText("");        
         groupSocket.sendMessage(message);
     }//GEN-LAST:event_jTextFieldMessageFieldActionPerformed
